@@ -5,6 +5,13 @@ function BadRequestException(message) {
     this.message = message || 'Bad request';
 }
 
+function ClientException(errors) {
+    Error.captureStackTrace(this, this.constructor);
+    this.title = errors[0].title || 'Internal server error';
+    this.code = errors[0].status || 500;
+    this.message = errors[0].detail || 'Internal server error';
+}
+
 function ConflictException(message) {
     Error.captureStackTrace(this, this.constructor);
     this.title = 'Conflict';
@@ -42,6 +49,7 @@ function UnauthorizedException(message) {
 
 module.exports = {
     BadRequestException,
+    ClientException,
     ConflictException,
     ForbiddenException,
     GeneralException,

@@ -1,14 +1,14 @@
 require('dotenv').config();
-const winston = require('winston');
 
 const { Env } = require('../enums');
 const { getFromEnv } = require('../utils/commonUtils');
+const logger = require('./logger');
 
 const setupAndCheckEnvironment = () => {
     Object.values(Env).forEach((environmentVariable) => {
         const value = getFromEnv(environmentVariable);
         if (!value) {
-            winston.error(`Environment variable ${environmentVariable} is missing`);
+            logger.error(`Environment variable ${environmentVariable} is missing`);
             // eslint-disable-next-line no-undef
             process.exit(1);
         }

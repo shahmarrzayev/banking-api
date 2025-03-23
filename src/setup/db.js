@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
-const winston = require('winston');
-
 const { Env } = require('../enums');
 const { getFromEnv } = require('../utils/commonUtils');
+const logger = require('./logger');
 
 const setupDbConnection = () => {
     return new Promise((resolve) => {
@@ -13,11 +12,11 @@ const setupDbConnection = () => {
                 socketTimeoutMS: 300000,
             })
             .then(() => {
-                winston.info('Connected to DB...');
+                logger.info('Connected to DB...');
                 resolve();
             })
             .catch((err) => {
-                winston.error(`Error connecting to db ${err}`);
+                logger.error(`Error connecting to db ${err}`);
             });
     });
 };
