@@ -47,8 +47,5 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
-
 # pm2
 ecosystem.config.js
